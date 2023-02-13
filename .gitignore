@@ -53,4 +53,8 @@ dkms.conf
 
 #
 .vscode
+pcacti_xml
+bin/
 *.pdf
+*.tar
+*.tar.gz
