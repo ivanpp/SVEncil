@@ -1,0 +1,30 @@
+Search stanza is "EMIT_GLOBAL_DYNAMIC_STATS"
+***WARNING***: - doesn't exist
+elements_fp_single_1 = 65883440
+elements_fp_single_4 = 0
+elements_fp_single_8 = 0
+elements_fp_single_16 = 0
+elements_fp_double_1 = 0
+elements_fp_double_2 = 0
+elements_fp_double_4 = 0
+elements_fp_double_8 = 0
+--->Total single-precision FLOPs = 65883440
+--->Total double-precision FLOPs = 0
+--->Total FLOPs = 65883440
+mem-read-1 = 30563
+mem-read-2 = 20795
+mem-read-4 = 76473564
+mem-read-8 = 135313898
+mem-read-16 = 218
+mem-read-32 = 1
+mem-read-64 = 0
+mem-write-1 = 224
+mem-write-2 = 18
+mem-write-4 = 19967856
+mem-write-8 = 1477456
+mem-write-16 = 620
+mem-write-32 = 0
+mem-write-64 = 0
+--->Total Bytes read = 1388481113
+--->Total Bytes written = 91701252
+--->Total Bytes = 1480182365
