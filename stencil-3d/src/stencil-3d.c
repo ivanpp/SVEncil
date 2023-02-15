@@ -5,6 +5,9 @@ typedef real_t*** arr_t;
 #define MAX_TIME 10
 #define INNER -1.0
 #define OUTER 1.0
+#ifndef PSIZE
+#define PSIZE 100
+#endif
 
 void setElement(float*** array, float value, int x, int y, int z){
     array[x][y][z] = value;
@@ -67,9 +70,9 @@ void stencil_3d_7point(arr_t A,arr_t B, const int nx, const int ny, const int nz
 
 int main() {
     int i, j, k;
-    int sz = 100;
-    int sx = 100;
-    int sy = 100;
+    int sz = PSIZE;
+    int sx = PSIZE;
+    int sy = PSIZE;
     float ***A = (float ***)malloc(sx*sizeof(float**));
     for (i = 0; i< sy; i++) {
         A[i] = (float **) malloc(sy*sizeof(float *));

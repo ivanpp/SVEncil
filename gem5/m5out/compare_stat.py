@@ -87,7 +87,11 @@ def sorted_diff(differences: dict, reverse: bool = True):
     for key, item in differences.items():
         val0, val1, *others = item
         if val0 == "nan" or val1 == "nan": diff = 100 # treat nan as max diff
-        else: diff = (float(val1) - float(val0)) / float(val0)
+        else: 
+            try:
+                diff = (float(val1) - float(val0)) / float(val0)
+            except ZeroDivisionError:
+                diff = 100
         if len(others) == 0: 
             diffs.append((diff, key, val0, val1)) # only val
         else: diffs.append((diff, key, val0, val1, others)) # with comment
