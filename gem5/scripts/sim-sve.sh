@@ -29,6 +29,7 @@ fi
 # syscall emulation, also save bash output
 $GEM5_BIN -d "$M5OUT_DIR/$OUTPUT_DIR" "$CONFIG_DIR/$MODEL_NAME.py" \
 --param "system.cpu[:].isa[:].sve_vl_se = $VEC" --cpu-type=ex5_big \
---caches -c "$BIN_DIR/$BIN" | tee $BASH_OUT
+--caches --l1d_size=64kB --l1i_size=32kB --l2cache --l2_size=256kB -c "$BIN_DIR/$BIN" \
+| tee $BASH_OUT
 # copy the configuration py file too
 cp "$CONFIG_DIR/$MODEL_NAME.py" "$M5OUT_DIR/$OUTPUT_DIR/"

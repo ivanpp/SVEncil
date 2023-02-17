@@ -120,7 +120,7 @@ int main() {
     float32_t inner = INNER;
     float32_t outer = OUTER;
     initValues(A, sx, sy, sz,  inner, outer);
-    stencil_3d_7point(A, B,  sz, sy, sz);
+    stencil_3d_7point(A, B, sx, sy, sz);
     free(A);
 
     printf("Execute successfully\n");

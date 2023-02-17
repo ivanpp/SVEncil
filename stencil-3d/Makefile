@@ -53,8 +53,8 @@ stencil-3daOf: $(SRCDIR)stencil-3d.c $(DEPS)
 manuv: stencil-3dm
 
 stencil-3dm: $(SRCDIR)stencil-3d-sve.c $(DEPS)
-	$(CC) $< $(CFLAGSV) -o $(ASMDIR)$@ -S
-	$(CC) $< $(CFLAGSV) -o $(BINDIR)$@
+	$(CC) $< $(CFLAGSV) -O3 -o $(ASMDIR)$@ -S
+	$(CC) $< $(CFLAGSV) -O3 -o $(BINDIR)$@
 
 # other optimizations
 optis: stencil-3dflat
