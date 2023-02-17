@@ -4,7 +4,7 @@ ASMDIR=asm/
 CC=aarch64-none-linux-gnu-gcc
 #CC=gcc
 CFLAGS := -O3 -static -march=armv8.2-a
-CFLAGSV := -static -march=armv8.2-a+sve
+CFLAGSV := -static -march=armv8.2-a+sve -DPSIZE=64
 #CFLAGS := -O3 -static
 
 DEPS=Makefile
@@ -50,11 +50,11 @@ stencil-3daOf: $(SRCDIR)stencil-3d.c $(DEPS)
 	$(CC) $< $(CFLAGSV) -Ofast -o $(BINDIR)$@
 
 # manual-vectorization
-manuv: stencil-3d-sve
+manuv: stencil-3dm
 
-stencil-3d-sve: $(SRCDIR)stencil-3d-sve.c $(DEPS)
-	$(CC) $< $(CFLAGSV) -O3 -o $(ASMDIR)$@ -S
-	$(CC) $< $(CFLAGSV) -O3 -o $(BINDIR)$@
+stencil-3dm: $(SRCDIR)stencil-3d-sve.c $(DEPS)
+	$(CC) $< $(CFLAGSV) -o $(ASMDIR)$@ -S
+	$(CC) $< $(CFLAGSV) -o $(BINDIR)$@
 
 # other optimizations
 optis: stencil-3dflat
