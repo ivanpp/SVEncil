@@ -9,7 +9,7 @@ CFLAGSV := -static -march=armv8.2-a+sve
 
 DEPS=Makefile
 
-all: clean makedir stencil-3d psize autov
+all: clean makedir stencil-3d psize autov manuv optis
 
 stencil-3d: $(SRCDIR)stencil-3d.c $(DEPS)
 	$(CC) $< $(CFLAGS) -o $(BINDIR)$@
@@ -49,7 +49,21 @@ stencil-3daOf: $(SRCDIR)stencil-3d.c $(DEPS)
 	$(CC) $< $(CFLAGSV) -Ofast -o $(ASMDIR)$@ -S
 	$(CC) $< $(CFLAGSV) -Ofast -o $(BINDIR)$@
 
-.PHONY: makedir clean default psize autov
+# manual-vectorization
+manuv: stencil-3d-sve
+
+stencil-3d-sve: $(SRCDIR)stencil-3d-sve.c $(DEPS)
+	$(CC) $< $(CFLAGSV) -O3 -o $(ASMDIR)$@ -S
+	$(CC) $< $(CFLAGSV) -O3 -o $(BINDIR)$@
+
+# other optimizations
+optis: stencil-3dflat
+
+stencil-3dflat: $(SRCDIR)stencil-3dflat.c $(DEPS)
+	$(CC) $< $(CFLAGSV) -O3 -o $(ASMDIR)$@ -S
+	$(CC) $< $(CFLAGSV) -O3 -o $(BINDIR)$@
+
+.PHONY: makedir clean default psize autov manuv optis
 
 makedir:
 	mkdir -p $(SRCDIR)

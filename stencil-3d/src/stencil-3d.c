@@ -61,12 +61,12 @@ void stencil_3d_7point(arr_t A,arr_t B, const int nx, const int ny, const int nz
                                   A[i  ][j  ][k+1]+
                                   A[i  ][j+1][k  ]+
                                   A[i+1][j  ][k  ])/7.0;
-    for (i = 1; i < nx-1; i++)
-        for (j = 1; j < ny-1; j++)
-            for (k = 1; k < nz-1; k++)
-                A[i][j][k] = B[i][j][k];
+        for (i = 1; i < nx-1; i++)
+            for (j = 1; j < ny-1; j++)
+                for (k = 1; k < nz-1; k++)
+                    A[i][j][k] = B[i][j][k];
     }
-}   
+}
 
 
 int main() {
@@ -90,7 +90,7 @@ int main() {
     }
 
     initValues(A, sx, sy, sz,  INNER, OUTER);
-    stencil_3d_7point(A,B,  sz, sy, sz);
+    stencil_3d_7point(A,B, sx, sy, sz);
     free(A);
     return 0;
 }
