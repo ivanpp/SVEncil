@@ -16,7 +16,7 @@ L1S=32kB
 L2S=64kB
 GEM5_BIN="build/ARM/gem5.opt"
 
-if [ $# -eq 0 ]
+if [ $# -lt 2 ]
 then
     >&2 echo "usage: srcipts/sim.sh OUTPUT_DIR VEC"
     >&2 echo "VEC should be 1(128)/2(256)/4(512)/8(1024)/16(2048)"
@@ -24,6 +24,10 @@ then
 else
     echo "------------------------------------"
     echo "GEM5 ARM syscall emulation"
+    echo
+    echo "L1D: $L1S"
+    echo "L2:  $L2S"
+    echo "sve_vl_se: $VEC"
     echo
     echo "model: $CONFIG_DIR/$MODEL_NAME.py"
     echo "m5out: $M5OUT_DIR/$OUTPUT_DIR"

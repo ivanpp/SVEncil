@@ -9,7 +9,7 @@ CFLAGSV := -static -march=armv8.2-a+sve -DPSIZE=64
 
 DEPS=Makefile
 
-all: clean makedir stencil-3d psize autov manuv optis
+all: clean makedir stencil-3d psize autov manuv optis omp
 
 stencil-3d: $(SRCDIR)stencil-3d.c $(DEPS)
 	$(CC) $< $(CFLAGS) -o $(BINDIR)$@
@@ -62,6 +62,13 @@ optis: stencil-3dflat
 stencil-3dflat: $(SRCDIR)stencil-3dflat.c $(DEPS)
 	$(CC) $< $(CFLAGSV) -O3 -o $(ASMDIR)$@ -S
 	$(CC) $< $(CFLAGSV) -O3 -o $(BINDIR)$@
+
+# openmp
+omp: stencil-3domp
+
+stencil-3domp: $(SRCDIR)stencil-3domp.c $(DEPS)
+	$(CC) $< $(CFLAGSV) -O3 -fopenmp -o $(ASMDIR)$@ -S
+	$(CC) $< $(CFLAGSV) -O3 -fopenmp -o $(BINDIR)$@
 
 .PHONY: makedir clean default psize autov manuv optis
 
