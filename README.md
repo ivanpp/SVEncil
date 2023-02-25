@@ -1,4 +1,6 @@
-# arm4stencil
+# SVEncil
+
+Co-design of SVE Enabled Hardware and Stencil Algorithm
 
 ## Use gem5
 
